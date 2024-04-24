@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programas de Estudios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            
+            margin: auto;
+            position: relative; /* Para posicionar los números de página correctamente */
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .programa {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 30px;
+            background-color: white;
+            position: relative;
+        }
+
+        .programa h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .programa p {
+            margin-bottom: 10px;
+        }
+
+        .programa strong {
+            font-weight: bold;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 0;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Programas de Estudios </h1>
+        <!-- Verifica si hay programas -->
+        {% if programas %}
+            <!-- Itera sobre los programas -->
+            {% for pdf in programas %}
+            <div class="programa">
+                <h2>{{ pdf.materia }}</h2>
+                <p><strong>Código:</strong> {{ pdf.codigo }}</p>
+                <p><strong>Curso:</strong> {{ pdf.curso }}</p>
+                <p><strong>Semestre:</strong> {{ pdf.semestre }}</p>
+                <p><strong>Requisitos:</strong> {{ pdf.requisitos }}</p>
+                <p><strong>Carga Horaria Semanal:</strong> {{ pdf.carga_horaria_semanal }}</p>
+                <p><strong>Carga Horaria Semestral:</strong> {{ pdf.carga_horaria_semestral }}</p>
+                <p><strong>Fundamentación:</strong> {{ pdf.fundamentacion }}</p>
+                <p><strong>Objetivos:</strong> {{ pdf.objetivos }}</p>
+                <p><strong>Contenido:</strong> {{ pdf.contenido }}</p>
+                <p><strong>Metodología:</strong> {{ pdf.metodologia }}</p>
+                <p><strong>Evaluación:</strong> {{ pdf.evaluacion }}</p>
+                <p><strong>Bibliografía:</strong> {{ pdf.bibliografia }}</p>
+                <!-- Agrega el número de programa -->
+                <div class="page-number">{{ forloop.counter }}</div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No se encontraron programas asociados a esta carrera.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

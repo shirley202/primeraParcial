@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Seleccionar Carrera</title>
+</head>
+<body>
+    <h1>Seleccionar Carrera</h1>
+    <form id="carreraForm" method="post">
+        {% csrf_token %}
+        <label for="carrera">Selecciona una carrera:</label>
+        <select name="carrera" id="carrera">
+            <option value="Ingeniería Civil">Ingeniería Civil</option>
+            <option value="Ingeniería en Electricidad">Ingeniería en Electricidad</option>
+            <option value="Ingeniería  en Informática">Ingeniería en Informática</option>
+            <option value="Ingeniería en Electrónica">Ingeniería en Electrónica</option>
+            <!-- Agrega más opciones según tus necesidades -->
+        </select>
+        <button type="button" onclick="submitForm()">Ver Programa</button>
+    </form>
+
+    <script>
+        function submitForm() {
+            var selectedCarrera = document.getElementById("carrera").value;
+            var form = document.getElementById("carreraForm");
+            form.action = "{% url 'ver_programa' carrera='PLACEHOLDER' %}".replace("PLACEHOLDER", selectedCarrera);
+            form.submit();
+        }
+    </script>
+</body>
+</html>
